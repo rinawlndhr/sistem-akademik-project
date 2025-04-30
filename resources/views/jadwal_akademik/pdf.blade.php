@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Mahasiswa</title>
+    <title>Daftar Jadwal Akademik</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,26 +28,24 @@
     </style>
 </head>
 <body>
-    <h1>Daftar Mahasiswa</h1>
+    <h1>Daftar Jadwal Akademik</h1>
     
     <table>
         <thead>
             <tr>
-                <th>NIM</th>
-                <th>Nama</th>
-                <th>Semester</th>
+                <th>Hari</th>
+                <th>Mata Kuliah</th>
+                <th>Ruang</th>
                 <th>Golongan</th>
-                <th>No. HP</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($mahasiswa as $mahasiswa)
+            @foreach ($jadwal_akademik as $jadwal)
             <tr>
-                <td>{{ $mahasiswa->NIM }}</td>
-                <td>{{ $mahasiswa->Nama }}</td>
-                <td>{{ $mahasiswa->Semester }}</td>
-                <td>{{ $mahasiswa->golongan->nama_Gol }}</td>
-                <td>{{ $mahasiswa->Nohp }}</td>
+                <td>{{ $jadwal->hari }}</td>
+                <td>{{ $jadwal->matakuliah->Kode_mk }} - {{ $jadwal->matakuliah->Nama_mk }}</td>
+                <td>{{ $jadwal->ruang->nama_ruang }}</td>
+                <td>{{ $jadwal->golongan->nama_Gol }}</td>
             </tr>
             @endforeach
         </tbody>

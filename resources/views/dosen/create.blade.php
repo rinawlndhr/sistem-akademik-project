@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Tambah Mahasiswa</h4>
+                    <h4>Tambah Dosen</h4>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -19,11 +19,11 @@
                         </div>
                     @endif
                     
-                    <form action="{{ route('mahasiswa.store') }}" method="POST">
+                    <form action="{{ route('dosen.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="NIM" class="form-label">NIM</label>
-                            <input type="text" class="form-control" id="NIM" name="NIM" required>
+                            <label for="NIP" class="form-label">NIP</label>
+                            <input type="text" class="form-control" id="NIP" name="NIP" required>
                         </div>
                         <div class="mb-3">
                             <label for="Nama" class="form-label">Nama</label>
@@ -38,21 +38,8 @@
                             <input type="text" class="form-control" id="Nohp" name="Nohp">
                         </div>
                         <div class="mb-3">
-                            <label for="Semester" class="form-label">Semester</label>
-                            <input type="text" class="form-control" id="Semester" name="Semester" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_Gol" class="form-label">Golongan</label>
-                            <select class="form-control" id="id_Gol" name="id_Gol" required>
-                                <option value="">-- Pilih Golongan --</option>
-                                @foreach ($golongan as $golongan)
-                                    <option value="{{ $golongan->id_Gol }}">{{ $golongan->nama_Gol }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary">Kembali</a>
+                            <a href="{{ route('dosen.index') }}" class="btn btn-secondary">Kembali</a>
                         </div>
                     </form>
                 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Mahasiswa</title>
+    <title>Daftar Mata Kuliah</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,26 +28,24 @@
     </style>
 </head>
 <body>
-    <h1>Daftar Mahasiswa</h1>
+    <h1>Daftar Mata Kuliah</h1>
     
     <table>
         <thead>
             <tr>
-                <th>NIM</th>
-                <th>Nama</th>
+                <th>Kode MK</th>
+                <th>Nama Mata Kuliah</th>
+                <th>SKS</th>
                 <th>Semester</th>
-                <th>Golongan</th>
-                <th>No. HP</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($mahasiswa as $mahasiswa)
+            @foreach ($matakuliah as $matakuliah)
             <tr>
-                <td>{{ $mahasiswa->NIM }}</td>
-                <td>{{ $mahasiswa->Nama }}</td>
-                <td>{{ $mahasiswa->Semester }}</td>
-                <td>{{ $mahasiswa->golongan->nama_Gol }}</td>
-                <td>{{ $mahasiswa->Nohp }}</td>
+                <td>{{ $matakuliah->Kode_mk }}</td>
+                <td>{{ $matakuliah->Nama_mk }}</td>
+                <td>{{ $matakuliah->sks }}</td>
+                <td>{{ $matakuliah->semester }}</td>
             </tr>
             @endforeach
         </tbody>

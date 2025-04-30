@@ -45,7 +45,7 @@
                         <div class="mb-3">
                             <label for="id_Gol" class="form-label">Golongan</label>
                             <select class="form-control" id="id_Gol" name="id_Gol" required>
-                                @foreach ($golongans as $golongan)
+                                @foreach ($golongan as $golongan)
                                     <option value="{{ $golongan->id_Gol }}" {{ $mahasiswa->id_Gol == $golongan->id_Gol ? 'selected' : '' }}>
                                         {{ $golongan->nama_Gol }}
                                     </option>

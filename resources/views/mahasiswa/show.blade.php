@@ -36,8 +36,8 @@
                         </tr>
                     </table>
                     <div class="mt-3">
-                        <a href="{{ route('mahasiswas.index') }}" class="btn btn-secondary">Kembali</a>
-                        <a href="{{ route('mahasiswas.edit', $mahasiswa->NIM) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary">Kembali</a>
+                        <a href="{{ route('mahasiswa.edit', $mahasiswa->NIM) }}" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@ class JadwalAkademikController extends Controller
         $matakuliah = Matakuliah::all();
         $ruang = Ruang::all();
         $golongan = Golongan::all();
-        return view('jadwal_akademik.create', compact('matakuliah', 'ruangs', 'golongans'));
+        return view('jadwal_akademik.create', compact('matakuliah', 'ruang', 'golongan'));
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class JadwalAkademikController extends Controller
         $matakuliah = Matakuliah::all();
         $ruang = Ruang::all();
         $golongan = Golongan::all();
-        return view('jadwal_akademik.edit', compact('jadwal_akademik', 'matakuliah', 'ruangs', 'golongans'));
+        return view('jadwal_akademik.edit', compact('jadwal_akademik', 'matakuliah', 'ruang', 'golongan'));
     }
 
     public function update(Request $request, JadwalAkademik $jadwal_akademik)

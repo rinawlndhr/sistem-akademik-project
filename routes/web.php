@@ -41,9 +41,19 @@ Route::resource('jadwal_akademik', JadwalAkademikController::class);
 Route::get('presensi_akademik/pdf', [PresensiAkademikController::class, 'generatePDF'])->name('presensi_akademik.pdf');
 Route::resource('presensi_akademik', PresensiAkademikController::class);
 
+// Route lain yang sudah ada
+Route::resource('presensi_akademik', PresensiAkademikController::class);
+
+// Tambahkan route khusus untuk PDF
+Route::get('presensi-akademik-pdf', [App\Http\Controllers\PresensiAkademikController::class, 'generatePDF'])->name('presensi_akademik.generatePDF');
+
 // KRS Routes
 Route::get('krs/pdf', [KrsController::class, 'generatePDF'])->name('krs.pdf');
+Route::get('krs/{id}/edit', [KrsController::class, 'edit'])->name('edit');
+Route::put('krs/{id}', [KrsController::class, 'update'])->name('update');
 Route::resource('krs', KrsController::class);
 
+
 // Pengampu Routes
+Route::get('pengampu/pdf', [PengampuController::class, 'generatePDF'])->name('pengampu.pdf');
 Route::resource('pengampu', PengampuController::class);

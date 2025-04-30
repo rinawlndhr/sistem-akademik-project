@@ -20,14 +20,14 @@ class KrsController extends Controller
     {
         $mahasiswa = Mahasiswa::all();
         $matakuliah = Matakuliah::all();
-        return view('krs.create', compact('mahasiswa', 'matakuliahs'));
+        return view('krs.create', compact('mahasiswa', 'matakuliah'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'NIM' => 'required|exists:mahasiswa,NIM',
-            'Kode_mk' => 'required|exists:matakuliahs,Kode_mk',
+            'Kode_mk' => 'required|exists:matakuliah,Kode_mk',
         ]);
 
         // Check if KRS already exists
@@ -46,45 +46,40 @@ class KrsController extends Controller
             ->with('success', 'KRS created successfully.');
     }
 
-    public function show(Krs $kr)
+    public function show(Krs $krs)
     {
-        return view('krs.show', compact('kr'));
+        $krs->load('mahasiswa', 'matakuliah');
+        return view('krs.show', compact('krs'));
     }
 
-    public function edit(Krs $kr)
+    public function edit($id)
     {
+        $krs = Krs::findOrFail($id);
         $mahasiswa = Mahasiswa::all();
         $matakuliah = Matakuliah::all();
-        return view('krs.edit', compact('kr', 'mahasiswa', 'matakuliah'));
+        return view('krs.edit', compact('krs', 'mahasiswa', 'matakuliah'));
     }
 
-    public function update(Request $request, Krs $kr)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'NIM' => 'required|exists:mahasiswa,NIM',
             'Kode_mk' => 'required|exists:matakuliah,Kode_mk',
         ]);
 
-        // Check if KRS already exists (except current one)
-        $exists = Krs::where('NIM', $request->NIM)
-                      ->where('Kode_mk', $request->Kode_mk)
-                      ->where('id', '!=', $kr->id)
-                      ->exists();
+        $dataEdit = [
+            'NIM'=> $request->NIM,
+            'Kode_mk'=>$request->Kode_mk,
+        ];
+        Krs::where('id', $id)->update($dataEdit);
         
-        if ($exists) {
-            return redirect()->route('krs.edit', $kr->id)
-                ->with('error', 'KRS sudah ada untuk mahasiswa dan mata kuliah tersebut.');
-        }
-
-        $kr->update($request->all());
-
-        return redirect()->route('krs.index')
-            ->with('success', 'KRS updated successfully');
+        return redirect()->route('krs.index')->with('message', 'Edit Data berhasil..');
     }
 
-    public function destroy(Krs $kr)
+    public function destroy($id)
     {
-        $kr->delete();
+        $krs = Krs::findOrFail($id);
+        $krs->delete();
 
         return redirect()->route('krs.index')
             ->with('success', 'KRS deleted successfully');

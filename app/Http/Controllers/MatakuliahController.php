@@ -10,19 +10,19 @@ class MatakuliahController extends Controller
 {
     public function index()
     {
-        $matakuliahs = Matakuliah::all();
-        return view('matakuliahs.index', compact('matakuliahs'));
+        $matakuliah = Matakuliah::all();
+        return view('matakuliah.index', compact('matakuliah'));
     }
 
     public function create()
     {
-        return view('matakuliahs.create');
+        return view('matakuliah.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'Kode_mk' => 'required|unique:matakuliahs',
+            'Kode_mk' => 'required|unique:matakuliah',
             'Nama_mk' => 'required',
             'sks' => 'required|numeric',
             'semester' => 'required',
@@ -30,18 +30,18 @@ class MatakuliahController extends Controller
 
         Matakuliah::create($request->all());
 
-        return redirect()->route('matakuliahs.index')
+        return redirect()->route('matakuliah.index')
             ->with('success', 'Matakuliah created successfully.');
     }
 
     public function show(Matakuliah $matakuliah)
     {
-        return view('matakuliahs.show', compact('matakuliah'));
+        return view('matakuliah.show', compact('matakuliah'));
     }
 
     public function edit(Matakuliah $matakuliah)
     {
-        return view('matakuliahs.edit', compact('matakuliah'));
+        return view('matakuliah.edit', compact('matakuliah'));
     }
 
     public function update(Request $request, Matakuliah $matakuliah)
@@ -54,7 +54,7 @@ class MatakuliahController extends Controller
 
         $matakuliah->update($request->all());
 
-        return redirect()->route('matakuliahs.index')
+        return redirect()->route('matakuliah.index')
             ->with('success', 'Matakuliah updated successfully');
     }
 
@@ -62,14 +62,14 @@ class MatakuliahController extends Controller
     {
         $matakuliah->delete();
 
-        return redirect()->route('matakuliahs.index')
+        return redirect()->route('matakuliah.index')
             ->with('success', 'Matakuliah deleted successfully');
     }
 
     public function generatePDF()
     {
-        $matakuliahs = Matakuliah::all();
-        $pdf = PDF::loadView('matakuliahs.pdf', compact('matakuliahs'));
+        $matakuliah = Matakuliah::all();
+        $pdf = PDF::loadView('matakuliah.pdf', compact('matakuliah'));
         return $pdf->download('matakuliah-list.pdf');
     }
 }

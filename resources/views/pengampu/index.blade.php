@@ -7,10 +7,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h4>Data Mahasiswa</h4>
+                        <h4>Data Pengampu</h4>
                         <div>
-                            <a href="{{ route('mahasiswa.pdf') }}" class="btn btn-primary">Download PDF</a>
-                            <a href="{{ route('mahasiswa.create') }}" class="btn btn-success">Tambah Mahasiswa</a>
+                            <a href="{{ route('pengampu.pdf') }}" class="btn btn-primary">Download PDF</a>
+                            <a href="{{ route('pengampu.create') }}" class="btn btn-success">Tambah Pengampu</a>
                         </div>
                     </div>
                 </div>
@@ -24,24 +24,22 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>NIM</th>
-                                <th>Nama</th>
-                                <th>Semester</th>
-                                <th>Golongan</th>
+                                <th>No</th>
+                                <th>Dosen</th>
+                                <th>Mata Kuliah</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($mahasiswa as $mahasiswa)
+                            @forelse ($pengampu as $pengampu)
                             <tr>
-                                <td>{{ $mahasiswa->NIM }}</td>
-                                <td>{{ $mahasiswa->Nama }}</td>
-                                <td>{{ $mahasiswa->Semester }}</td>
-                                <td>{{ $mahasiswa->golongan->nama_Gol }}</td>
+                                <td>{{ $pengampu->id }}</td>
+                                <td>{{ $pengampu->dosen->Nama }}</td>
+                                <td>{{ $pengampu->matakuliah->Nama_mk }}</td>
                                 <td>
-                                    <form action="{{ route('mahasiswa.destroy', $mahasiswa->NIM) }}" method="POST">
-                                        <a href="{{ route('mahasiswa.show', $mahasiswa->NIM) }}" class="btn btn-info btn-sm">Detail</a>
-                                        <a href="{{ route('mahasiswa.edit', $mahasiswa->NIM) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('pengampu.destroy', $pengampu->id) }}" method="POST">
+                                        <a href="{{ route('pengampu.show', $pengampu->id) }}" class="btn btn-info btn-sm">Detail</a>
+                                        <a href="{{ route('pengampu.edit', $pengampu->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
@@ -50,7 +48,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5" class="text-center">Tidak ada data mahasiswa</td>
+                                <td colspan="4" class="text-center">Tidak ada data pengampu</td>
                             </tr>
                             @endforelse
                         </tbody>

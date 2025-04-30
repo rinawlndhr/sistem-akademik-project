@@ -11,13 +11,13 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswas = Mahasiswa::with('golongan')->get();
+        $mahasiswa = Mahasiswa::with('golongan')->get();
         return view('mahasiswa.index', compact('mahasiswa'));
     }
 
     public function create()
     {
-        $golongans = Golongan::all();
+        $golongan = Golongan::all();
         return view('mahasiswa.create', compact('golongan'));
     }
 
@@ -43,8 +43,8 @@ class MahasiswaController extends Controller
 
     public function edit(Mahasiswa $mahasiswa)
     {
-        $golongans = Golongan::all();
-        return view('mahasiswa.edit', compact('mahasiswa', 'golongans'));
+        $golongan = Golongan::all();
+        return view('mahasiswa.edit', compact('mahasiswa', 'golongan'));
     }
 
     public function update(Request $request, Mahasiswa $mahasiswa)

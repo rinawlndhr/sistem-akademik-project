@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Mahasiswa</title>
+    <title>Daftar KRS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,26 +28,28 @@
     </style>
 </head>
 <body>
-    <h1>Daftar Mahasiswa</h1>
+    <h1>Daftar Kartu Rencana Studi (KRS)</h1>
     
     <table>
         <thead>
             <tr>
                 <th>NIM</th>
-                <th>Nama</th>
+                <th>Nama Mahasiswa</th>
+                <th>Kode MK</th>
+                <th>Mata Kuliah</th>
+                <th>SKS</th>
                 <th>Semester</th>
-                <th>Golongan</th>
-                <th>No. HP</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($mahasiswa as $mahasiswa)
+            @foreach ($krs as $item)
             <tr>
-                <td>{{ $mahasiswa->NIM }}</td>
-                <td>{{ $mahasiswa->Nama }}</td>
-                <td>{{ $mahasiswa->Semester }}</td>
-                <td>{{ $mahasiswa->golongan->nama_Gol }}</td>
-                <td>{{ $mahasiswa->Nohp }}</td>
+                <td>{{ $item->mahasiswa->NIM }}</td>
+                <td>{{ $item->mahasiswa->Nama }}</td>
+                <td>{{ $item->matakuliah->Kode_mk }}</td>
+                <td>{{ $item->matakuliah->Nama_mk }}</td>
+                <td>{{ $item->matakuliah->sks }}</td>
+                <td>{{ $item->matakuliah->semester }}</td>
             </tr>
             @endforeach
         </tbody>

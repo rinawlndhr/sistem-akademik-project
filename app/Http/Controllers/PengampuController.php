@@ -6,6 +6,8 @@ use App\Models\Pengampu;
 use App\Models\Dosen;
 use App\Models\Matakuliah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PengampuController extends Controller
 {
@@ -39,7 +41,16 @@ class PengampuController extends Controller
                 ->with('error', 'Pengampu dengan dosen dan mata kuliah tersebut sudah ada.');
         }
 
-        Pengampu::create($request->all());
+        // Mencari ID tertinggi dan menambahkan 1
+        $maxId = DB::table('pengampu')->max('id') ?? 0;
+        $newId = $maxId + 1;
+        
+        // Buat array data dengan id yang eksplisit
+        $data = $request->all();
+        $data['id'] = $newId;
+        
+        // Simpan data
+        Pengampu::create($data);
 
         return redirect()->route('pengampu.index')
             ->with('success', 'Pengampu created successfully.');
@@ -87,5 +98,12 @@ class PengampuController extends Controller
 
         return redirect()->route('pengampu.index')
             ->with('success', 'Pengampu deleted successfully');
+    }
+
+    public function generatePDF()
+    {
+        $pengampu = Pengampu::with(['dosen', 'matakuliah'])->get();
+        $pdf = PDF::loadView('pengampu.pdf', compact('pengampu'));
+        return $pdf->download('pengampu-list.pdf');
     }
 }

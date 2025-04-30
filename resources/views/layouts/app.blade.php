@@ -22,6 +22,11 @@
                         <a class="nav-link" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('golongan.index') }}">Golongan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pengampu.index') }}">Pengampu</a>
+                    </li>
                         <a class="nav-link" href="{{ route('dosen.index') }}">Dosen</a>
                     </li>
                     <li class="nav-item">
@@ -29,6 +34,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('jadwal_akademik.index') }}">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ruang.index') }}">Ruang</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('presensi_akademik.index') }}">Presensi</a>
@@ -48,3 +56,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

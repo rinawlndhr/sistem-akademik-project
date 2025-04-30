@@ -9,7 +9,7 @@ class GolonganController extends Controller
 {
     public function index()
     {
-        $golongans = Golongan::all();
+        $golongan = Golongan::all();
         return view('golongan.index', compact('golongan'));
     }
 
